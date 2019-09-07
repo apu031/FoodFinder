@@ -1,59 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no">
 
 <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
 </head>
 
 <body>
+    <form method="POST" action = "">{% csrf_token %}
 
-  <style>
-  .colour {
-    color: #FF0000;
-    background-color: #000000;
-  }
+            <p>Select city</p> {{ form.cities}}
+            <br><br>
+            <input type="submit" value="Submit!"/>
 
-  .wrapper .button-css {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FF0000;
-  }
+    </form>
 
-  .helloworld-text {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .wrapper {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
-  }
-  </style>
+    <form method="POST" action = "">{% csrf_token %}
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<form method="POST" name="submit-form">
-  {% csrf_token %}
-  <div class="wrapper">
-    <h1 class="helloworld-text">Hello World!</h1>
-    <h1 class="helloworld-text">Count: {{our_counter.count}}</h1>
-    <button id="button" class="btn button-css waves-effect" onclick="changeColor();">Submit</button>
-  </div>
-</form>
+            <p>Select food category</p> {{ form.food_categories}}
+            <br><br>
+            <input type="submit" value="Submit!"/>
 
-<script>
-  function changeColor(){
-    console.log("here")
-    var button = document.getElementById('button');
-    document.body.classList.toggle('colour')
-  }
-</script>
-
-
+    </form>
 </body>
+</html>
