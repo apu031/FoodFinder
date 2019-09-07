@@ -6,6 +6,7 @@ from django.template import loader
 from django.http import HttpResponse
 from django.views import generic
 from .models import Counter
+from .mycharts import MyBarChartDrawing
 
 # Create your views here.
 class Home(generic.DetailView):
@@ -13,11 +14,13 @@ class Home(generic.DetailView):
     template_name = "home/index.html"
 
     def get(self, request, *args, **kwargs):
-        context = {'our_counter' : Counter.objects.get(pk=1)}
+        context = {}
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        counter_object = Counter.objects.get(pk=1)
-        counter_object.count += 1
-        counter_object.save()
         return redirect('homepage')
+
+def getBarChart(request):
+    d = MyBarChartDrawing()
+    binaryStuff = d.asString('gif')
+    return HttpResponse(binaryStuff, '/image/gif')
