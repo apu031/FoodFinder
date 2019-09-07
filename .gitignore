@@ -1,1 +1,3 @@
 *.pyc
+HelloWorldWebsite/__pycache__
+HelloWorldWebsite/home/__pycache__
