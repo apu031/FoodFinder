@@ -18,11 +18,37 @@
     </form>
 
     <form method="POST" action = "">{% csrf_token %}
-
             <p>Select food category</p> {{ form.food_categories}}
             <br><br>
             <input type="submit" value="Submit!"/>
 
     </form>
+  
+  <img id="barchart" src="about:blank" alt="text" />
+
+  <script>
+      if (window.location.href.split('?').length > 0) {
+          // Fetch a bar chart image if current url has correct query strings
+          // For now, only expect one query string.
+          // If not, use code from here (September 7, 2019): https://www.arungudelli.com/tutorial/javascript/get-query-string-parameter-values-from-url-using-javascript/
+          const queryString = window.location.href.split('?')[1].split('=');
+          if (queryString[0] === 'category' || queryString[0] === 'city') {
+              const headers = new Headers();
+              headers.append('Accept', 'image/gif');
+              urlOptions = {method : 'get', credentials: 'same-origin', headers};
+
+              window.fetch(`/barchart.png?${queryString[0]}=${queryString[1]}`, urlOptions).then((response) => {
+                  return response.blob();
+              }).then((image) => {
+                  const imageSrc = URL.createObjectURL(image);
+                  const barChartElement = document.getElementById('barchart');
+                  barChartElement.setAttribute('src', imageSrc);
+                  console.log(imageSrc);
+              })
+          }
+      }
+  </script>
+
+
 </body>
 </html>
