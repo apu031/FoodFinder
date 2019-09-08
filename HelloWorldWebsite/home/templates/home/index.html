@@ -17,6 +17,9 @@
 
     </form>
 
+    <img id="barchart" src="about:blank" alt="text" />
+
+
     <form method="POST" action = "">{% csrf_token %}
             <p>Select food category</p> {{ form.food_categories}}
             <br><br>
@@ -24,7 +27,6 @@
 
     </form>
   
-  <img id="barchart" src="about:blank" alt="text" />
 
   <script>
       if (window.location.href.split('?').length > 0) {
