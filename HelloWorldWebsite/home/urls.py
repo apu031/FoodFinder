@@ -17,5 +17,5 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path('', views.Home.as_view(), name='homepage'),
-    path('bar', views.getBarChart, name='getbarchart'),
+    path('barchart.png', views.getBarChart, name='getbarchart'),
 ]

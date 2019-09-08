@@ -21,6 +21,9 @@ class Home(generic.DetailView):
         return redirect('homepage')
 
 def getBarChart(request):
+    # if (request.GET.get('category') is not None):
+    #     context['image_url'] = '/bar'
+
     d = MyBarChartDrawing()
     binaryStuff = d.asString('gif')
     return HttpResponse(binaryStuff, '/image/gif')
