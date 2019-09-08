@@ -21,3 +21,14 @@ class DropDownModel(models.Model):
     cities = models.CharField(max_length=6, choices=CITY_CHOICES, default='green')
     food_categories = models.CharField(max_length=6, choices=FOOD_CATEGORIES, default='orange')
 
+class ParsedData(models.Model):
+    business_id = models.TextField(primary_key=True, blank=False)
+    name = models.TextField(blank=True, null=True)
+    city = models.TextField(blank=True, null=True)
+    stars = models.TextField(blank=True, null=True)
+    review_count = models.TextField(blank=True, null=True)
+    categories = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'parsed_data'
