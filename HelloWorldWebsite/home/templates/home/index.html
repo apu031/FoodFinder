@@ -17,11 +17,11 @@
 
     </form>
 
-    <form method="POST" action = "">{% csrf_token %}
-            <p>Select food category</p> {{ form.food_categories}}
-            <br><br>
-            <input type="submit" value="Submit!"/>
+    <form method="POST" action="/search/">
+        {% csrf_token %}
+        <input type="text" name="textfield">
 
+        <button type="submit">Search Based on Cuisine</button>
     </form>
   
   <img id="barchart" src="about:blank" alt="text" />
