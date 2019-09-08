@@ -5,19 +5,21 @@ from django.shortcuts import render, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django.views import generic
-from .models import Counter
+from .mycharts import MyBarChartDrawing
+from django.views.generic import CreateView
+from .models import DropDownModel
+from .forms import DropDownModelForm
 
 # Create your views here.
-class Home(generic.DetailView):
-    model = Counter
+class Home(CreateView):
+    model = DropDownModel
     template_name = "home/index.html"
+    form_class = DropDownModelForm
+    
+def getBarChart(request):
+    # if (request.GET.get('category') is not None):
+    #     context['image_url'] = '/bar'
 
-    def get(self, request, *args, **kwargs):
-        context = {'our_counter' : Counter.objects.get(pk=1)}
-        return render(request, self.template_name, context)
-
-    def post(self, request, *args, **kwargs):
-        counter_object = Counter.objects.get(pk=1)
-        counter_object.count += 1
-        counter_object.save()
-        return redirect('homepage')
+    d = MyBarChartDrawing()
+    binaryStuff = d.asString('gif')
+    return HttpResponse(binaryStuff, '/image/gif')
