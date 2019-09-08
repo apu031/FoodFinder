@@ -5,11 +5,14 @@ from django.db import models
 
 # Create your models here.
 CITY_CHOICES = (
-    ('toronto', 'toronto'),
-    ('edmonton', 'edmonton'),
-    ('new york', 'new york'),
-    ('montreal', 'montreal'),
-    ('ottawa', 'ottawa'),
+    ('Toronto', 'Toronto'),
+    # ('Edmonton', 'Edmonton'),
+    ('New york', 'New york'),
+    ('Montreal', 'Montreal'),
+    ('Ottawa', 'Ottawa'),
+    ('Phoenix', 'Phoenix'),
+    ('Calgary', 'Calgary'),
+    ('Saint Joseph', 'Saint Joseph'),
 )
 
 FOOD_CATEGORIES = (

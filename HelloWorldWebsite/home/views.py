@@ -28,14 +28,39 @@ def getBarChart(request):
     return HttpResponse(binaryStuff, '/image/gif')
 
 def fetchCity(request):
-    city = request.POST.get('cities')
-    return redirect('/?city='+city)
+    citi = request.POST.get('cities')
+    category = ['Chinese', 'Indian', 'Mexican', 'Canadian', 'Greek']
+    diction = {}
+    for cate in category:
+        diction[cate] = ParsedData.objects.filter(city=citi, categories__contains=cate).count()
 
+    # Data for plotting
+    fig = plt.figure()
+    ax = plt.gca()
+    x = list(diction.keys())
+    y = list(diction.values())
+    ax.bar(x, y, color='gray')
+
+    ax.set(xlabel='Food Type', ylabel='Number of Restuarant',
+           title='Ranking Cuisine Based on ' + citi + " Food")
+    # ax.grid()
+    response = HttpResponse(content_type='image/png')
+
+    canvas = FigureCanvasAgg(fig)
+    canvas.print_jpg(response)
+    return response
+
+    # return redirect('/?city='+city)
+
+    # total = 0
+    # context = {'total' : total, 'p':q}
+    # return render(request, 'tempo.html', context)
 def search(request):
     if request.method == 'POST':
         search_id = request.POST.get('textfield', None)
         try:
             # total = ParsedData.objects.count()
+
             queried_data = ParsedData.objects. \
                 values('city'). \
                 annotate(
