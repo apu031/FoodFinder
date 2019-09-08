@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <html lang="en">
 <head>
 
@@ -9,23 +10,59 @@
 </head>
 
 <body>
-    <form method="POST" action = "/fetchCity">{% csrf_token %}
+    <style>
+      .colour {
+        color: #FF0000;
+        background-color: #000000;
+      }
+      .wrapper .button-css {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #FF0000;
+      }
+      .helloworld-text {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+      }
+      .flex-child{
+        flex: 1 1 auto;
+        flex-direction: row;
+        display: flex;
+        justify-content: center;
+        padding: 3%;
+        width: 100%;
+      }
+    </style>
 
-            <p>Select city</p> {{ form.cities}}
-            <br><br>
-            <input type="submit" value="Submit!"/>
+    <div class = "flex-container">
+      <h1 class="display-1" style="display:flex; justify-content:center; text-align:center; padding:1%; color: #FF970C;">FOOD FINDER</h1>
+      <div class = "flex-child">
+        <form method="POST" action = "/fetchCity">{% csrf_token %}
 
-    </form>
+                <h3>Select city</h3> {{ form.cities}}
+                <br><br>
+                <input type="submit" value="Submit!" class="btn btn-primary"/>
 
-    <img id="barchart" src="about:blank" alt="text" />
-  
-    <form method="POST" action="/search/">
-        {% csrf_token %}
-        <input type="text" name="textfield">
+        </form>
 
-        <button type="submit">Search Based on Cuisine</button>
-    </form>
-  
+        <img class="img-fluid" id="barchart" src="about:blank" alt= " "/>
+      </div>
+      <h1 style="display:flex; justify-content:center; text-align:center; padding:1%;"> OR </h1>
+      <div class="flex-child">
+        <form method="POST" action="/search/">
+            {% csrf_token %}
+            <input class="form-control-lg" placeholder="Choose a Cuisine" type="text" name="textfield">
+
+            <button type="submit" class="btn btn-primary">Search!</button>
+        </form>
+      </div>
+    </div>
 
   <script>
       if (window.location.href.split('?').length > 0) {
