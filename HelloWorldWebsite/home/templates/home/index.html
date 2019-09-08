@@ -1,83 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, intial-scale=1, shrink-to-fit=no">
 
 <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
 </head>
 
 <body>
+    <form method="POST" action = "">{% csrf_token %}
 
-  <style>
-  .colour {
-    color: #FF0000;
-    background-color: #000000;
-  }
+            <p>Select city</p> {{ form.cities}}
+            <br><br>
+            <input type="submit" value="Submit!"/>
 
-  .wrapper .button-css {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FF0000;
-  }
+    </form>
 
-  .helloworld-text {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .wrapper {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
-  }
-  </style>
+    <form method="POST" action = "">{% csrf_token %}
+            <p>Select food category</p> {{ form.food_categories}}
+            <br><br>
+            <input type="submit" value="Submit!"/>
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<form method="POST" name="submit-form">
-  {% csrf_token %}
-  <div class="wrapper">
-    <h1 class="helloworld-text">Hello World!</h1>
-    <h1 class="helloworld-text">Count: {{our_counter.count}}</h1>
-    <button id="button" class="btn button-css waves-effect" onclick="changeColor();">Submit</button>
-  </div>
-</form>
-<img id="barchart" src="about:blank" alt="text" />
+    </form>
+  
+  <img id="barchart" src="about:blank" alt="text" />
 
-<script>
-    if (window.location.href.split('?').length > 0) {
-        // Fetch a bar chart image if current url has correct query strings
-        // For now, only expect one query string.
-        // If not, use code from here (September 7, 2019): https://www.arungudelli.com/tutorial/javascript/get-query-string-parameter-values-from-url-using-javascript/
-        const queryString = window.location.href.split('?')[1].split('=');
-        if (queryString[0] === 'category' || queryString[0] === 'city') {
-            const headers = new Headers();
-            headers.append('Accept', 'image/gif');
-            urlOptions = {method : 'get', credentials: 'same-origin', headers};
+  <script>
+      if (window.location.href.split('?').length > 0) {
+          // Fetch a bar chart image if current url has correct query strings
+          // For now, only expect one query string.
+          // If not, use code from here (September 7, 2019): https://www.arungudelli.com/tutorial/javascript/get-query-string-parameter-values-from-url-using-javascript/
+          const queryString = window.location.href.split('?')[1].split('=');
+          if (queryString[0] === 'category' || queryString[0] === 'city') {
+              const headers = new Headers();
+              headers.append('Accept', 'image/gif');
+              urlOptions = {method : 'get', credentials: 'same-origin', headers};
 
-            window.fetch(`/barchart.png?${queryString[0]}=${queryString[1]}`, urlOptions).then((response) => {
-                return response.blob();
-            }).then((image) => {
-                const imageSrc = URL.createObjectURL(image);
-                const barChartElement = document.getElementById('barchart');
-                barChartElement.setAttribute('src', imageSrc);
-                console.log(imageSrc);
-            })
-        }
-    }
-</script>
-
-<script>
-  function changeColor(){
-    console.log("here")
-    var button = document.getElementById('button');
-    document.body.classList.toggle('colour')
-  }
-</script>
+              window.fetch(`/barchart.png?${queryString[0]}=${queryString[1]}`, urlOptions).then((response) => {
+                  return response.blob();
+              }).then((image) => {
+                  const imageSrc = URL.createObjectURL(image);
+                  const barChartElement = document.getElementById('barchart');
+                  barChartElement.setAttribute('src', imageSrc);
+                  console.log(imageSrc);
+              })
+          }
+      }
+  </script>
 
 
 </body>
+</html>
