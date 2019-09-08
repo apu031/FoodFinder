@@ -18,5 +18,6 @@ from . import views
 urlpatterns = [
     path('', views.Home.as_view(), name='homepage'),
     path('barchart.png', views.getBarChart, name='getbarchart'),
+    path('fetchCity', views.fetchCity, name='fetchCity'),
     path('search/', views.search, name='search'),
 ]

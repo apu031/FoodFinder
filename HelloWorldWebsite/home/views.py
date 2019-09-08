@@ -27,6 +27,10 @@ def getBarChart(request):
     binaryStuff = d.asString('gif')
     return HttpResponse(binaryStuff, '/image/gif')
 
+def fetchCity(request):
+    city = request.POST.get('cities')
+    return redirect('/?city='+city)
+
 def search(request):
     if request.method == 'POST':
         search_id = request.POST.get('textfield', None)

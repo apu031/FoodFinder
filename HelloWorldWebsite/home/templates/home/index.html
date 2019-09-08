@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form method="POST" action = "">{% csrf_token %}
+    <form method="POST" action = "/fetchCity">{% csrf_token %}
 
             <p>Select city</p> {{ form.cities}}
             <br><br>
@@ -17,6 +17,8 @@
 
     </form>
 
+    <img id="barchart" src="about:blank" alt="text" />
+  
     <form method="POST" action="/search/">
         {% csrf_token %}
         <input type="text" name="textfield">
@@ -24,7 +26,6 @@
         <button type="submit">Search Based on Cuisine</button>
     </form>
   
-  <img id="barchart" src="about:blank" alt="text" />
 
   <script>
       if (window.location.href.split('?').length > 0) {
