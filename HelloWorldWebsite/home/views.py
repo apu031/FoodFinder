@@ -23,3 +23,7 @@ def getBarChart(request):
     d = MyBarChartDrawing()
     binaryStuff = d.asString('gif')
     return HttpResponse(binaryStuff, '/image/gif')
+
+def fetchCity(request):
+    city = request.POST.get('cities')
+    return redirect('/?city='+city)

@@ -17,7 +17,6 @@ FOOD_CATEGORIES = (
     ('indian', 'indian'),
 )
 
-
 class DropDownModel(models.Model):
     cities = models.CharField(max_length=6, choices=CITY_CHOICES, default='green')
     food_categories = models.CharField(max_length=6, choices=FOOD_CATEGORIES, default='orange')
