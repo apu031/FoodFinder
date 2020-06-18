@@ -20,17 +20,15 @@ def getfile(request):
         count = 0
         for line in reader:
             if count != 0:
-                # print(line[1], line[2], line[5], line[10], line[11], line[13])
                 ParsedData.objects.create(
                     business_id=line[1],
                     name=line[2],
-                    city=line[5],
-                    stars=line[10],
-                    review_count=line[11],
-                    categories=line[13]
+                    city=line[3],
+                    stars=line[4],
+                    review_count=line[5],
+                    categories=line[6]
                 )
             count += 1
-            # print(count)
     return JsonResponse({
         'message': 'successfully uploaded',
     }, status=201)
