@@ -7,7 +7,7 @@ from food.models import DropDownModel, ParsedData
 
 class DropDownModelAdmin(admin.ModelAdmin):
     model = DropDownModel
-    list_display = ['id', 'cities', 'food_categories']
+    list_display = ['id', 'cities']
 
 class ParsedDataAdmin(admin.ModelAdmin):
     model = ParsedData
