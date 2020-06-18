@@ -49,7 +49,6 @@ def get_bar_chart(request):
 
 def fetch_city(request):
     city = request.POST.get('cities')
-    print(city)
     unique_categories = set()
     categories = [query['categories'].split(', ') for query in
                   ParsedData.objects.values('categories').filter(city=city)]
@@ -57,9 +56,6 @@ def fetch_city(request):
     for category in categories:
         for cate in category:
             unique_categories.add(cate)
-
-    print(unique_categories)
-    # category = ['Chinese', 'Indian', 'Mexican', 'Canadian', 'Greek']
 
     cat_list = []
     for cate in unique_categories:
