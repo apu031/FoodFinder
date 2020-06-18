@@ -1,4 +1,5 @@
 *.pyc
-HelloWorldWebsite/__pycache__
-HelloWorldWebsite/home/__pycache__
+FoodFinder/__pycache__
+FoodFinder/food/__pycache__
 .idea
+db.sqlite3
